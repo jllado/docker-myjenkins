@@ -1,0 +1,15 @@
+docker build -t myjenkins .
+docker run -p 7070:8080 -v /opt/servers/jenkins:/var/jenkins_home --name=myjenkins -d myjenkins
+docker stop myjenkins
+docker start myjenkins
+docker run myjenkins
+
+#Create ubuntu service:
+cp docker-myjenkins.service /etc/systemd/system/
+
+#To start using the service, reload systemd and start the service:
+systemctl daemon-reload
+systemctl start docker-redis_server.service
+
+#To enable the service at system startup, execute:
+
