@@ -16,7 +16,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
+#Plugins
 USER jenkins
+#COPY plugins.txt /usr/share/jenkins/plugins.txt
+#RUN cd /usr/share/jenkins/ref/plugins/; install-plugins.sh $(cat /usr/share/jenkins/plugins.txt | tr '\n' ' ')
 
 #Set Defaults
 ENV JENKINS_OPTS="--logfile=/var/log/jenkins/jenkins.log --prefix=/jenkins"
