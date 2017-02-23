@@ -28,8 +28,8 @@ COPY settings.xml /root/.m2/settings.xml
 
 #Plugins
 USER jenkins
-#COPY plugins.txt /usr/share/jenkins/plugins.txt
-#RUN cd /usr/share/jenkins/ref/plugins/; install-plugins.sh $(cat /usr/share/jenkins/plugins.txt | tr '\n' ' ')
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN install-plugins.sh $(cat /usr/share/jenkins/plugins.txt | tr '\n' ' ')
 
 #Set Defaults
 ENV JENKINS_OPTS="--logfile=/var/log/jenkins/jenkins.log --prefix=/jenkins"

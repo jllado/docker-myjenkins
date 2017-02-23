@@ -3,7 +3,7 @@ ant:latest
 antisamy-markup-formatter:latest
 authentication-tokens:latest
 bouncycastle-api:latest
-branch-api:2.0.5
+branch-api:latest
 build-timeout:latest
 bitbucket:latest
 maven-plugin:latest
