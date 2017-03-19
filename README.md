@@ -40,6 +40,7 @@ cp docker-myjenkins.service /etc/systemd/system/
 To start using the service, reload systemd and start the service:
 ```language-bash
 systemctl daemon-reload
+systemctl enable docker-myjenkins.service
 systemctl start docker-myjenkins.service
 ```
 
