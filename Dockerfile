@@ -16,6 +16,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
+#Install docker-compose
+RUN curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+  && chmod a+x /usr/local/bin/docker-compose
+
 #Setup Maven
 ENV MAVEN_VERSION 3.3.9
 
