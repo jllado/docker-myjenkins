@@ -1,7 +1,7 @@
 FROM jenkins:2.32.3
 MAINTAINER jllado
 
-ARG DOCKER_GID=993
+ENV DOCKER_GID 993
 
 #Prepare Jenkins Directories
 USER root
@@ -9,7 +9,7 @@ RUN mkdir /var/log/jenkins
 RUN chown -R jenkins:jenkins /var/log/jenkins
 
 #Prepare image to execute docker cli
-RUN groupadd -g ${DOCKER_GID} docker
+RUN groupadd -g $DOCKER_GID docker
 RUN usermod -aG docker jenkins 
 RUN apt-get update \
     && apt-get install -y sudo \
