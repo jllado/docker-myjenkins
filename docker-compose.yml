@@ -4,10 +4,37 @@ services:
     build: .
     restart: always
     ports:
-    - "7070:8080"
+        - "7070:8080"
     volumes:
         - /opt/servers/jenkins:/var/jenkins_home
         - /var/run/docker.sock:/var/run/docker.sock
         - /usr/bin/docker:/usr/bin/docker
+    links:
+        - sonar
     environment:
         - DOCKER_GID
+  sonar:
+    image: sonarqube:6.3
+    restart: always
+    ports:
+        - "9000:9000"
+        - "9092:9092"
+    links:
+        - mysql
+    environment:
+        - SONARQUBE_JDBC_USERNAME=sonar
+        - SONARQUBE_JDBC_PASSWORD=sonar
+        - SONARQUBE_JDBC_URL=jdbc:mysql://myjenkins_mysql_1:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    volumes:
+        - /opt/servers/sonarqube/data:/opt/sonarqube/data
+        - /opt/servers/sonarqube/extensions:/opt/sonarqube/extensions
+        - /opt/servers/sonarqube/plugins:/opt/sonarqube/lib/bundled-plugins
+  mysql:
+    image: mysql:5.7.17
+    volumes:
+        - /opt/servers/sonarqube/mysql/data:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=mysecretpassword
+        - MYSQL_USER=sonar
+        - MYSQL_PASSWORD=sonar
+        - MYSQL_DATABASE=sonar
