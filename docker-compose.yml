@@ -1,7 +1,10 @@
 version: '2'
 services:
   jenkins:
-    build: .
+    build:
+        context: .
+        args:
+            - DOCKER_GID
     restart: always
     ports:
         - "7070:8080"
@@ -11,8 +14,6 @@ services:
         - /usr/bin/docker:/usr/bin/docker
     links:
         - sonar
-    environment:
-        - DOCKER_GID
   sonar:
     image: sonarqube:6.3
     restart: always

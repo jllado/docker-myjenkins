@@ -1,7 +1,7 @@
 FROM jenkins:2.32.3
 MAINTAINER jllado
 
-ENV DOCKER_GID 993
+ARG DOCKER_GID=993
 
 #Prepare Jenkins Directories
 USER root
