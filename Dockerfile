@@ -20,6 +20,14 @@ RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 RUN curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
   && chmod a+x /usr/local/bin/docker-compose
 
+#Install nodejs & npm
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
+bash nodesource_setup.sh && \
+apt-get install -yq nodejs build-essential
+
+#Install mocha to run js tests
+RUN npm install -g mocha
+
 #Setup Maven
 ENV MAVEN_VERSION 3.3.9
 
