@@ -43,7 +43,6 @@ oic-auth:latest
 oauth-credentials:latest
 openid:latest
 openid4java:latest
-openshift-login:latest
 pam-auth:latest
 pipeline-build-step:latest
 pipeline-graph-analysis:latest
