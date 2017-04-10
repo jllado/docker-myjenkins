@@ -14,6 +14,8 @@ services:
         - /usr/bin/docker:/usr/bin/docker
     links:
         - sonar
+    external_links:
+        - myhubot_hubot_1
   sonar:
     image: sonarqube:6.3
     restart: always
