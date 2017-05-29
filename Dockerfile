@@ -1,4 +1,4 @@
-FROM jenkins:2.32.3
+FROM jenkinsci/jenkins:2.63
 MAINTAINER jllado
 
 ARG DOCKER_GID=993
