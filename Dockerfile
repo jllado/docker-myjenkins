@@ -1,7 +1,7 @@
 FROM jenkinsci/jenkins:2.67
 MAINTAINER jllado
 
-ARG DOCKER_GID=993
+ARG DOCKER_GID
 
 #Prepare Jenkins Directories
 USER root
@@ -15,10 +15,6 @@ RUN apt-get update \
     && apt-get install -y sudo \
     && rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
-
-#Install docker-compose
-RUN curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
-  && chmod a+x /usr/local/bin/docker-compose
 
 #Install nodejs & npm
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh && \
