@@ -31,3 +31,10 @@ RUN install-plugins.sh $(cat /usr/share/jenkins/plugins.txt | tr '\n' ' ')
 
 #Set Defaults
 ENV JENKINS_OPTS="--logfile=/var/log/jenkins/jenkins.log --prefix=/jenkins"
+
+# Skip initial setup
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
+ENV JENKINS_USER admin
+ENV JENKINS_PASS admin
+COPY default-user.groovy /usr/share/jenkins/ref/init.groovy.d/

@@ -15,6 +15,7 @@ icon-shim:2.0.3
 jquery-detached:1.2.1
 junit:1.20
 mailer:1.20
+matrix-auth:1.7
 matrix-project:1.11
 pipeline-model-api:1.1.8
 pipeline-model-declarative-agent:1.1.1
