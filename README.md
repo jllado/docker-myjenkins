@@ -3,9 +3,9 @@ This a pre-configured jenkins image (with a set of predefined plugins) that can 
 ### Installed Packages
 Below packages are pre-installed:
 - Java 8 JDK
-- Maven 3
 - Git
 - Docker
+- Node
 
 
 #### Docker *by* Docker
@@ -28,19 +28,4 @@ By default, this will store image data in `/opt/servers/jenkins`directory of the
 
 You can check jenkis plugin list from the following url:
 http://updates.jenkins-ci.org/download/plugins/
-
-### Ubuntu service
-
-Create the script:
-
-```language-bash
-cp docker-myjenkins.service /etc/systemd/system/
-```
-
-To start using the service, reload systemd and start the service:
-```language-bash
-systemctl daemon-reload
-systemctl enable docker-myjenkins.service
-systemctl start docker-myjenkins.service
-```
 
