@@ -1,11 +1,10 @@
-This a pre-configured jenkins image (with a set of predefined plugins) that can run maven builds from git repositories, and produce jars or other docker images. No additional jenkins plugins or linux packages is needed from the start.
+This a pre-configured jenkins image (with a set of predefined plugins). No additional jenkins plugins or linux packages is needed from the start.
 
 ### Installed Packages
 Below packages are pre-installed:
-- Java 8 JDK
+- Java 11 JDK
 - Git
 - Docker
-- Node
 
 
 #### Docker *by* Docker
@@ -27,5 +26,5 @@ By default, this will store image data in `/opt/servers/jenkins`directory of the
 ### Plugins
 
 You can check jenkis plugin list from the following url:
-http://updates.jenkins-ci.org/download/plugins/
+https://docs.cloudbees.com/plugins
 
