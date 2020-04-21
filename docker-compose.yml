@@ -11,4 +11,9 @@ services:
         - "7070:8080"
     volumes:
         - /opt/servers/jenkins:/var/jenkins_home
+        - $HOME/.minikube:/var/jenkins_home/minikube
         - /var/run/docker.sock:/var/run/docker.sock
+    extra_hosts:
+        kubernetes-server: ${KUBERNETES_SERVER}
+    environment:
+        - KUBERNETES_SERVER=${KUBERNETES_SERVER}

@@ -7,12 +7,12 @@ ARG DOCKER_GID
 RUN echo 2.204.4 > /usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
 RUN echo 2.204.4 > /usr/share/jenkins/ref/jenkins.install.InstallUtil.lastExecVersion
 
-#Prepare Jenkins Directories
+#Jenkins Directories
 USER root
 RUN mkdir /var/log/jenkins
 RUN chown -R jenkins:jenkins /var/log/jenkins
 
-#Prepare image to execute docker cli
+#docker cli
 ENV DOCKER_VERSION 19.03.3
 ENV COMPOSE_VERSION 1.23.1
 RUN apt-get update -qq \
@@ -24,13 +24,20 @@ RUN add-apt-repository \
    stable"
 RUN apt-get update  -qq \
     && apt-get install docker-ce=17.12.1~ce-0~debian -y
-RUn curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose \
+RUN curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose \
  && chmod +x /usr/local/bin/docker-compose
 RUN usermod -aG docker jenkins 
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
-#Plugins
+#kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+RUN chmod +x ./kubectl
+RUN mv ./kubectl /usr/local/bin
 USER jenkins
+RUN mkdir /var/jenkins_home/minikube
+VOLUME /var/jenkins_home/minikube
+
+#Plugins
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
